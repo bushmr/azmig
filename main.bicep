@@ -6,7 +6,7 @@ param MigGroupName string
 param MigAssessName string
 param AssessProjName string
 
-targetScope = 'subscription'
+/* targetScope = 'subscription'
 
 module resGroup 'resGroup.bicep' = {
   name: 'ResGrp'
@@ -14,13 +14,13 @@ module resGroup 'resGroup.bicep' = {
      RgName: ResGroupName
      RgLocation: ResGroupLoc
   }
-}
+} */
 
 module migProject 'migrateproj.bicep' = {
-  dependsOn: [
+  /* dependsOn: [
     resGroup
   ]
-  scope: resourceGroup(ResGroupName)
+  scope: resourceGroup(ResGroupName) */
   name: 'MigProjGrp' 
   params: {
      MigrationProjectName: MigProjName
@@ -29,10 +29,10 @@ module migProject 'migrateproj.bicep' = {
 }
 
 module assessProject 'assessment.bicep' = {
-  dependsOn: [
+  /* dependsOn: [
     migProject
   ]
-  scope: resourceGroup(ResGroupName)
+  scope: resourceGroup(ResGroupName) */
   name: 'AssessProj'
   params: {
     AssessmentProjectName: AssessProjName
@@ -42,10 +42,10 @@ module assessProject 'assessment.bicep' = {
 }
 
 module migSrvGrp 'migrategroup.bicep' = {
-  dependsOn: [
+/*   dependsOn: [
     migProject
   ]
-  scope: resourceGroup(ResGroupName)
+  scope: resourceGroup(ResGroupName) */
   name: 'SvrGroup'
   params: {
      GroupingName: migSvrGroupName 
